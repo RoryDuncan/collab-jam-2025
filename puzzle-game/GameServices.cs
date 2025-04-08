@@ -3,8 +3,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.BitmapFonts;
 
-namespace puzzle_game.game;
+namespace puzzle_game;
 
 public class GameServices
 {

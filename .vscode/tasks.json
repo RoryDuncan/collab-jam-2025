@@ -40,7 +40,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/desktop-friend.sln"
+                "${workspaceFolder}\\puzzle-game\\puzzle-game.csproj",
             ],
             "problemMatcher": "$msCompile"
         }

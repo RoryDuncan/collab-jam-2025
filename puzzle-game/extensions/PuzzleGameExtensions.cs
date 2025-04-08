@@ -1,19 +1,18 @@
-using flower_game.game.extensions;
 using Microsoft.Extensions.DependencyInjection;
+using puzzle_game;
+namespace puzzle_game.game.extensions;
 
-namespace flower_game.game.extensions;
 
 
-
-public static class FlowerGameServices
+public static class PuzzleGameServices
 {
-    
-    public static Type GetService<Type>(this FlowerGame game)
+
+    public static Type GetService<Type>(this PuzzleGame game)
     {
         return GameServices.Provider.GetService<Type>();
     }
 
-    public static void RegisterServices(this FlowerGame game)
+    public static void RegisterServices(this PuzzleGame game)
     {
         GameServices.RegisterServices(game);
     }
