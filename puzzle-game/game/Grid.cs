@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -47,20 +48,27 @@ public class Grid<CellType>
     public void ForEachCell(Action<Rect, int, int, CellType> task)
     {
 
+        const int size = 50;
         const int margin = 4;
-        for (int row = 0; row < Rows; row++)
-        {
-            for (int col = 0; col < Cols; col++)
-            {
-                CellType value = Cells[row, col].Value;
-                var rect = new Rect() {
-                    Width = 50,
-                    Height = 50,
-                    X = col * (50 + margin),
-                    Y = row * (50 + margin),
-                };
+        const int container = size + margin;
 
-                task(rect, row, col, value);
+        CellType value;
+        int row;
+        int col;
+        Rect rect = new Rect {
+                    Width = size,
+                    Height = size,
+                };
+        for (row = 0; row < Rows; ++row)
+        {
+            for (col = 0; col < Cols; ++col)
+            {
+                value = Cells[row, col].Value;
+
+                task(rect with {
+                    X = col * container,
+                    Y = row * container,
+                }, row, col, value);
             }
         }
     }
@@ -79,7 +87,8 @@ public class Grid<CellType>
 
 }
 
-public class Cell<TData>(TData initialValue = default)
+public record Cell<TData>(TData initialValue = default)
 {
     public TData Value { get; set; } = initialValue;
 }
+
